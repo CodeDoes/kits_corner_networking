@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4tt5cl8qclca"]
+
+[ext_resource type="Script" path="res://net.gd" id="1_akqxp"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ehcqp"]
+
+[node name="Node2D" type="VBoxContainer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 57.0
+grow_vertical = 2
+script = ExtResource("1_akqxp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Clients:"
+
+[node name="CurrentUser" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Clients" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://client.tscn")
+spawn_path = NodePath("../Clients")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Clients")
+replication_config = SubResource("SceneReplicationConfig_ehcqp")
